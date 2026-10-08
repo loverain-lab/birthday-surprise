@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#211928" />
+    <meta name="description" content="An enchanted birthday story for Negin." />
+    <title>Negin's Enchanted Birthday</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="ambient" aria-hidden="true">
+      <span></span><span></span><span></span>
+    </div>
+    <div class="ornament top" aria-hidden="true">✦ ── ❧ ── ✦</div>
+    <header class="site-header">
+      <a class="monogram" href="#invitation" aria-label="Back to invitation"
+        >N <span>✦</span></a
+      >
+      <div class="header-label">A little world made just for you</div>
+      <button
+        id="musicBtn"
+        class="sound-btn"
+        type="button"
+        aria-label="Play music"
+        aria-pressed="false"
+      >
+        ♫ <span>Music off</span>
+      </button>
+    </header>
+    <main id="main">
+      <section
+        class="chapter active"
+        id="invitation"
+        aria-labelledby="invitation-title"
+      >
+        <div class="hero-content">
+          <p class="eyebrow">✦ AN ENCHANTED INVITATION ✦</p>
+
+          <div class="libra-mark" aria-label="Libra zodiac sign">
+            <span class="libra-symbol">♎</span>
+            <span class="libra-stars">✦ · ✧ · ✦</span>
+            <p>
+              Under a sky full of stars,<br />
+              a very special Libra was born.
+            </p>
+          </div>
+
+          <div class="envelope" aria-hidden="true">
+            <div class="envelope-paper">
+              A very special day<br /><span>awaits you</span>
+            </div>
+            <div class="envelope-body"></div>
+            <div class="envelope-flap"></div>
+            <div class="wax-seal">N</div>
+          </div>
+          <h1 id="invitation-title">Dearest <em id="heroName">Negin</em>,</h1>
+          <p class="hero-copy">
+            Some stories begin with “once upon a time.”<br />Yours begins with a
+            little bit of magic.
+          </p>
+          <button class="primary-btn" id="openStory" type="button">
+            Open your story <span aria-hidden="true">↗</span>
+          </button>
+          <p class="small-note">Best enjoyed slowly, one chapter at a time</p>
+        </div>
+      </section>
+
+      <section
+        class="chapter"
+        id="storybook"
+        aria-labelledby="storybook-title"
+        hidden
+      >
+        <div class="section-heading">
+          <p class="eyebrow">CHAPTER I · THE STORYBOOK</p>
+          <h2 id="storybook-title">
+            The extraordinary things<br />that make you <em>you.</em>
+          </h2>
+          <p>Every page holds a small piece of your magic.</p>
+        </div>
+        <div class="book-wrap">
+          <div class="book-decoration" aria-hidden="true">✧</div>
+          <article class="book" aria-live="polite">
+            <span class="page-corner">❧</span>
+            <p id="pageCategory" class="book-kicker">The first page</p>
+            <div id="pageSymbol" class="book-symbol" aria-hidden="true">✦</div>
+            <h3 id="pageTitle">A story to tell</h3>
+            <p id="pageText"></p>
+            <div class="page-footer">
+              <span id="pageNumber">01 / 05</span><span>✦</span>
+            </div>
+          </article>
+        </div>
+        <div class="book-controls">
+          <button id="prevPage" class="ghost-btn" type="button">
+            ← Previous</button
+          ><button id="nextPage" class="ghost-btn" type="button">
+            Next page →
+          </button>
+        </div>
+        <button id="toGarden" class="primary-btn chapter-next" type="button">
+          Step into the garden →
+        </button>
+      </section>
+
+      <section
+        class="chapter"
+        id="garden"
+        aria-labelledby="garden-title"
+        hidden
+      >
+        <div class="section-heading">
+          <p class="eyebrow">CHAPTER II · THE SECRET GARDEN</p>
+          <h2 id="garden-title">Where wishes <em>blossom.</em></h2>
+          <p>Every flower is hiding a wish for you. Pick each one.</p>
+        </div>
+        <div class="garden-bed">
+          <button
+            class="flower"
+            data-wish="0"
+            type="button"
+            aria-label="Open rose wish"
+          >
+            <span class="flower-illustration">✿</span><span>Rose</span>
+          </button>
+          <button
+            class="flower"
+            data-wish="1"
+            type="button"
+            aria-label="Open lavender wish"
+          >
+            <span class="flower-illustration">❀</span><span>Lavender</span>
+          </button>
+          <button
+            class="flower"
+            data-wish="2"
+            type="button"
+            aria-label="Open iris wish"
+          >
+            <span class="flower-illustration">✾</span><span>Iris</span>
+          </button>
+          <button
+            class="flower"
+            data-wish="3"
+            type="button"
+            aria-label="Open Daisy wish"
+          >
+            <span class="flower-illustration">❁</span><span>Daisy</span>
+          </button>
+        </div>
+        <div id="wishCard" class="wish-card" aria-live="polite">
+          <span>❧</span>
+          <p>Choose a flower to reveal its wish.</p>
+        </div>
+        <button id="toGallery" class="primary-btn chapter-next" type="button">
+          Enter the little museum →
+        </button>
+      </section>
+
+      <section
+        class="chapter"
+        id="gallery"
+        aria-labelledby="gallery-title"
+        hidden
+      >
+        <div class="section-heading">
+          <p class="eyebrow">CHAPTER III · A PRIVATE EXHIBITION</p>
+          <h2 id="gallery-title">The museum of <em>little wonders.</em></h2>
+          <p>A gallery for moments worth keeping forever.</p>
+        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+
+        <button id="toCake" class="primary-btn chapter-next" type="button">
+          One last birthday ritual →
+        </button>
+      </section>
+
+      <section class="chapter" id="cake" aria-labelledby="cake-title" hidden>
+        <div class="section-heading">
+          <p class="eyebrow">CHAPTER IV · MAKE A WISH</p>
+          <h2 id="cake-title">A little cake, <em>a lot of magic.</em></h2>
+          <p id="candleInstruction">
+            Make a wish, then tap each candle to blow it out.
+          </p>
+        </div>
+        <div class="cake-stage">
+          <div class="sparkle one">✦</div>
+          <div class="sparkle two">✧</div>
+          <div class="candles" id="candles">
+            <button class="candle" aria-label="Blow out candle 1">
+              <span class="flame"></span><span class="wick"></span></button
+            ><button class="candle" aria-label="Blow out candle 2">
+              <span class="flame"></span><span class="wick"></span></button
+            ><button class="candle" aria-label="Blow out candle 3">
+              <span class="flame"></span><span class="wick"></span>
+            </button>
+          </div>
+          <div class="cake-icing"></div>
+          <div class="cake-top"></div>
+          <div class="cake-bottom"></div>
+          <div class="cake-plate"></div>
+        </div>
+        <div id="cakeMessage" class="cake-message" role="status">
+          Three little wishes are waiting…
+        </div>
+        <button
+          id="toLetter"
+          class="primary-btn chapter-next"
+          type="button"
+          disabled
+        >
+          Unlock your final letter ✉
+        </button>
+      </section>
+
+      <section
+        class="chapter"
+        id="letter"
+        aria-labelledby="letter-title"
+        hidden
+      >
+        <div class="section-heading">
+          <p class="eyebrow">THE FINAL CHAPTER · JUST FOR YOU</p>
+          <h2 id="letter-title">One last <em>little secret.</em></h2>
+        </div>
+        <article class="letter-paper">
+          <div class="letter-ornament">❦</div>
+          <p class="letter-date">A note for your birthday</p>
+          <h3>My dearest Negin,</h3>
+          <div id="personalLetter" class="letter-message"></div>
+          <p class="signature">
+            With all the love my heart can hold,<br /><span id="senderName"
+              >Someone who cares</span
+            >
+          </p>
+          <div class="letter-ornament bottom-ornament">❦</div>
+        </article>
+
+        <!-- A LITTLE SECRET GIFT -->
+        <div class="secret-gift">
+          <div class="gift-divider">✦ ❧ ✦</div>
+
+          <p class="eyebrow">ONE MORE LITTLE SECRET</p>
+
+          <h3>
+            Wait, birthday girl...
+            <br />
+            There's something else.
+          </h3>
+
+          <button
+            id="openGift"
+            class="gift-box"
+            type="button"
+            aria-label="Unwrap your surprise"
+            aria-expanded="false"
+            aria-controls="giftReveal"
+          >
+            <span class="gift-icon">🎁</span>
+            <span class="gift-label">Unwrap your secret ✨</span>
+          </button>
+
+          <div id="giftReveal" class="gift-reveal" hidden>
+            <span class="gift-sparkle">✦ ♡ ✦</span>
+
+            <h3>A little magic beyond the screen...</h3>
+
+            <p>Some surprises aren't made of pixels and stardust.</p>
+
+            <p>One of them is making its way to you in the real world.</p>
+
+            <p class="gift-ending">
+              Keep an eye out, my birthday girl. There's a little piece of my
+              love waiting to find you. ♡
+            </p>
+          </div>
+        </div>
+
+        <div class="closing">
+          <h2>Happy Birthday, <em>Negin.</em></h2>
+          <p>May all your chapters be beautiful.</p>
+          <button id="restart" class="ghost-btn" type="button">
+            ↺ Read the story again
+          </button>
+        </div>
+      </section>
+    </main>
+    <div class="progress" id="progress" aria-label="Story progress" hidden>
+      <span id="progressLabel">Chapter 1 of 5</span>
+      <div class="progress-track"><div id="progressFill"></div></div>
+    </div>
+    <canvas id="confetti" aria-hidden="true"></canvas>
+    <audio id="music" src="happy-birthday.mp3" preload="auto" loop></audio>
+    <footer class="footer">
+      MADE WITH A LITTLE MAGIC & A LOT OF HEART <span>✦</span>
+    </footer>
+  </body>
+</html>
