@@ -12,7 +12,8 @@
   box-sizing: border-box;
 }
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  overflow-anchor: none;
 }
 body {
   margin: 0;
@@ -955,4 +956,245 @@ button:not(:disabled) {
   .gift-reveal {
     animation: none;
   }
+}
+
+/* OUR SECRET PHOTOGRAPH */
+
+.secret-photo {
+  width: 100%;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
+.secret-photo .artwork {
+  position: relative;
+  overflow: hidden;
+}
+
+.secret-photo .artwork::after {
+  content: "✦";
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  color: #f7dfad;
+  font-size: 24px;
+  text-shadow: 0 0 15px #d7b782;
+  animation: secretSparkle 2s ease-in-out infinite alternate;
+}
+
+.secret-photo:hover {
+  transform: translateY(-6px) rotate(var(--tilt));
+}
+
+.secret-photo:focus-visible {
+  outline: 3px solid #d7b782;
+  outline-offset: 5px;
+}
+
+@keyframes secretSparkle {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* SECRET MUSEUM EXHIBIT */
+
+.secret-frame {
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.secret-artwork {
+  position: relative;
+  background: radial-gradient(circle, #886679, #382834) !important;
+}
+
+.secret-envelope {
+  font-size: 90px !important;
+  color: #e8d1a4 !important;
+  text-shadow: 0 0 30px #d7b78266;
+  transition: transform 0.4s ease;
+}
+
+.secret-frame:hover .secret-envelope {
+  transform: translateY(-8px) rotate(-7deg);
+}
+
+.secret-seal {
+  position: absolute;
+  bottom: 25%;
+  font-size: 30px !important;
+  color: #d7b782 !important;
+}
+
+.secret-hint {
+  display: block;
+  text-align: center;
+  margin: 12px 0 4px;
+  font-size: 11px;
+  color: #e8d1a4;
+  letter-spacing: 0.1em;
+}
+
+/* HIDDEN LETTER DIALOG */
+
+.museum-letter-dialog {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: min(650px, 92vw);
+  max-height: 85vh;
+  padding: 0;
+  border: 2px solid #c2a071;
+  background: #f4e7d0;
+  color: #573f43;
+  overflow-y: auto;
+  box-shadow: 0 30px 90px #0009;
+}
+
+.museum-letter-dialog::backdrop {
+  background: rgba(17, 10, 20, 0.85);
+  backdrop-filter: blur(8px);
+}
+
+.secret-letter-paper {
+  padding: 45px clamp(24px, 6vw, 65px);
+  text-align: center;
+  background: linear-gradient(135deg, #ead7b8, #fff1d9, #e7d0b2);
+}
+
+.letter-close {
+  position: sticky;
+  top: 12px;
+  float: right;
+  margin: 12px 12px 0 0;
+  z-index: 2;
+  background: #573f43;
+  color: #fff1df;
+  border: none;
+  border-radius: 50%;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+}
+
+.secret-letter-paper .eyebrow {
+  color: #987348;
+  margin-top: 16px;
+}
+
+.secret-letter-paper h2 {
+  margin: 20px 0 30px;
+  font:
+    500 clamp(32px, 6vw, 48px) "Cormorant Garamond",
+    serif;
+}
+
+.secret-letter-text {
+  font:
+    23px/1.5 "Cormorant Garamond",
+    serif;
+}
+
+.secret-letter-text p {
+  margin-bottom: 20px;
+}
+
+.secret-letter-signature {
+  margin-top: 32px;
+  font-style: italic;
+}
+
+.song-section {
+  margin-top: 40px;
+  padding-top: 25px;
+  border-top: 1px solid #b99b75;
+}
+
+.song-section > span {
+  color: #b08a65;
+  letter-spacing: 8px;
+}
+
+.song-section p {
+  margin: 18px 0 24px;
+  font:
+    italic 24px "Cormorant Garamond",
+    serif;
+}
+
+.youtube-link {
+  display: inline-block;
+  padding: 14px 28px;
+  background: #573f43;
+  color: #f7ecda;
+  border: 1px solid #bc9868;
+  border-radius: 4px;
+  text-decoration: none;
+  transition:
+    transform 0.3s,
+    background 0.3s;
+}
+
+.youtube-link:hover {
+  background: #765363;
+  transform: translateY(-3px);
+}
+
+@media (max-width: 650px) {
+  .gallery-grid .secret-frame:last-child {
+    grid-column: 1 / -1;
+    width: 70%;
+    justify-self: center;
+  }
+}
+
+/* VICTORIAN SONG LYRICS */
+
+.song-lyrics {
+  text-align: center;
+}
+
+.song-lyrics h3 {
+  margin: 20px 0 5px;
+  font:
+    500 32px "Cormorant Garamond",
+    serif;
+  color: #573f43;
+}
+
+.song-artist {
+  font-size: 15px;
+  letter-spacing: 2px;
+  color: #987348;
+}
+
+.song-lyrics blockquote {
+  margin: 30px auto;
+  padding: 20px 25px;
+  border-left: 2px solid #b99b75;
+  font:
+    italic 25px/1.7 "Cormorant Garamond",
+    serif;
+  color: #573f43;
+}
+
+.song-ornament {
+  display: block;
+  color: #b08a65;
+  letter-spacing: 9px;
+  font-size: 19px;
+}
+
+.song-dedication {
+  font:
+    italic 21px "Cormorant Garamond",
+    serif;
+  color: #85685c;
 }

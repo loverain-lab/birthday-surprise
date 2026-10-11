@@ -94,23 +94,35 @@ const progressNames = [
   "Make a wish",
   "Your letter",
 ];
+
 function showChapter(id) {
   chapters.forEach((chapter) => {
     const el = document.getElementById(chapter);
     const active = chapter === id;
+
     el.hidden = !active;
     el.classList.toggle("active", active);
   });
+
   const index = chapters.indexOf(id);
+
   $("#progress").hidden = index === 0;
   $("#progressLabel").textContent = progressNames[index];
   $("#progressFill").style.width =
     `${Math.round((index / (chapters.length - 1)) * 100)}%`;
-  window.scrollTo({ top: 0, behavior: "instant" });
-  const heading = document.getElementById(id).querySelector("h1,h2");
-  heading?.setAttribute("tabindex", "-1");
-  heading?.focus({ preventScroll: true });
+
+  requestAnimationFrame(() => {
+    window.scrollTo(0, 0);
+
+    const heading = document.getElementById(id).querySelector("h1, h2");
+
+    if (heading) {
+      heading.setAttribute("tabindex", "-1");
+      heading.focus({ preventScroll: true });
+    }
+  });
 }
+
 function renderPage() {
   const page = config.bookPages[currentPage];
   $("#pageCategory").textContent = page.category;
@@ -132,15 +144,34 @@ function turnPage(direction) {
     $(".book").classList.remove("turn");
   }, 160);
 }
+
 function renderGallery() {
   const gallery = $("#galleryGrid");
   gallery.replaceChildren();
+
+  const hint = document.querySelector(".gallery-hint");
+
+  if (hint) {
+    hint.textContent = "Three little portraits. One of them holds a secret. ✦";
+  }
+
   config.gallery.forEach((item, index) => {
-    const frame = document.createElement("article");
-    frame.className = "art-frame";
+    const isSecret = index === 0;
+
+    const frame = document.createElement(isSecret ? "button" : "article");
+
+    frame.className = isSecret ? "art-frame secret-photo" : "art-frame";
+
     frame.style.setProperty("--tilt", `${[-2, 2, -1][index % 3]}deg`);
+
+    if (isSecret) {
+      frame.type = "button";
+      frame.setAttribute("aria-label", "Open our secret letter");
+    }
+
     const art = document.createElement("div");
     art.className = "artwork";
+
     if (item.image) {
       const img = document.createElement("img");
       img.src = item.image;
@@ -152,14 +183,31 @@ function renderGallery() {
       symbol.textContent = item.symbol;
       art.append(symbol);
     }
+
     const title = document.createElement("h3");
     title.textContent = item.title;
+
     const caption = document.createElement("p");
     caption.textContent = item.caption;
+
     frame.append(art, title, caption);
+
+    if (isSecret) {
+      const hint = document.createElement("span");
+      hint.className = "secret-hint";
+      hint.textContent = "✦ A memory with a secret ✦";
+
+      frame.append(hint);
+
+      frame.addEventListener("click", () => {
+        document.getElementById("museumLetter").showModal();
+      });
+    }
+
     gallery.append(frame);
   });
 }
+
 function releaseConfetti() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const canvas = $("#confetti"),
@@ -200,7 +248,6 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#personalLetter").textContent = config.letter;
   $("#openStory").addEventListener("click", () => {
     showChapter("storybook");
-    // A user gesture allows most browsers to start background audio.
     if (!music.dataset.manuallyPaused) playMusic();
   });
   $("#prevPage").addEventListener("click", () => turnPage(-1));
@@ -251,12 +298,31 @@ document.addEventListener("DOMContentLoaded", () => {
     showChapter("invitation");
   });
   const music = $("#music");
+
+  const museumLetter = $("#museumLetter");
+  const closeMuseumLetter = $("#closeMuseumLetter");
+  const ourSongLink = $("#ourSongLink");
+
+  closeMuseumLetter.addEventListener("click", () => {
+    museumLetter.close();
+  });
+
+  museumLetter.addEventListener("click", (event) => {
+    if (event.target === museumLetter) {
+      museumLetter.close();
+    }
+  });
+
+  ourSongLink.addEventListener("click", () => {
+    music.dataset.manuallyPaused = "true";
+    music.pause();
+  });
+
   const btn = $("#musicBtn");
   async function playMusic() {
     try {
       await music.play();
     } catch (error) {
-      // Browsers can block audio until a user gesture, or the file may be missing.
       btn.querySelector("span").textContent = "Play music";
       console.warn("Unable to play birthday music:", error);
     }
