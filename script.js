@@ -195,8 +195,6 @@ function renderGallery() {
     if (isSecret) {
       const hint = document.createElement("span");
       hint.className = "secret-hint";
-      hint.textContent = "✦ A memory with a secret ✦";
-
       frame.append(hint);
 
       frame.addEventListener("click", () => {
